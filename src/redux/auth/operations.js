@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -19,7 +20,13 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      if (error.response.status === 400) {
+        Notify.info('There is a user with this email already!');
+        return thunkAPI.rejectWithValue(error.response.data);
+      } else {
+        Notify.failure('Oops! Something went wrong! Please refresh the page or try again later');
+        return thunkAPI.rejectWithValue(error.message);
+      }
     }
   }
 );
@@ -32,7 +39,15 @@ export const logIn = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      if (error.response.status === 400) {
+        Notify.info('Wrong email or password!');
+        return thunkAPI.rejectWithValue(error.response.data);
+      } else {
+        Notify.failure(
+          'Oops! Something went wrong! Please refresh the page or try again later'
+        );
+        return thunkAPI.rejectWithValue(error.message);
+      }
     }
   }
 );

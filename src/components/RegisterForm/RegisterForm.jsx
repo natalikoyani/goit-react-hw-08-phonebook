@@ -1,37 +1,54 @@
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
+import { Formik, ErrorMessage, Field, Form } from 'formik';
+import * as Yup from 'yup';
+
+const registerSchema = Yup.object().shape({
+  name: Yup.string().required('This field is required!'),
+  email: Yup.string().email().required('This field is required!'),
+  password: Yup.string()
+    .min(7, 'Password should be minimum 7 characters!')
+    .required('This field is required!'),
+});
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  const handleSubmit = (values, { resetForm }) => {
     dispatch(
       register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+        name: values.name,
+        email: values.email,
+        password: values.password,
       })
     );
-    form.reset();
+    resetForm();
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
+  <Formik
+    initialValues={{ name: '', email: '', password: '' }}
+    validationSchema={registerSchema}
+    onSubmit={handleSubmit}
+  >
+    <Form autoComplete="off">
       <label>
-        Username
-        <input type="text" name="name" />
+        Name
+        <Field name="name" />
+        <ErrorMessage name="name" component="div" />
       </label>
       <label>
         Email
-        <input type="email" name="email" />
+        <Field name="email" />
+        <ErrorMessage name="email" component="div" />
       </label>
       <label>
         Password
-        <input type="password" name="password" />
+        <Field name="password" />
+        <ErrorMessage name="password" component="div" />
       </label>
       <button type="submit">Register</button>
-    </form>
-  );
+    </Form>
+  </Formik>
+);
 };

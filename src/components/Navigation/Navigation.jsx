@@ -1,19 +1,13 @@
-import { NavLink } from 'react-router-dom';
+import { UserMenu } from '../UserMenu/UserMenu';
+import { AuthNav } from '../AuthNav/AuthNav';
 import { useAuth } from 'hooks/useAuth';
 
-export const Navigation = () => {
+export const AppBar = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <nav>
-      <NavLink to="/">
-        Home
-      </NavLink>
-      {isLoggedIn && (
-        <NavLink to="/tasks">
-          Tasks
-        </NavLink>
-      )}
-    </nav>
+    <header>
+      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+    </header>
   );
 };
