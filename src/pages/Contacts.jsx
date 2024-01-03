@@ -7,6 +7,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Loader } from 'components/Loader';
 import { Filter } from 'components/Filter/Filter';
+import { ContactsPageWrapper } from './Contacts.styled';
 
 export default function Contacts() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export default function Contacts() {
   }, [dispatch]);
 
   return (
-    <>
+    <ContactsPageWrapper>
       <Helmet>
         <title>Your contacts</title>
       </Helmet>
@@ -25,6 +26,6 @@ export default function Contacts() {
       <Filter />
       <div>{isLoading && <Loader />}</div>
       <ContactList />
-    </>
+    </ContactsPageWrapper>
   );
 }

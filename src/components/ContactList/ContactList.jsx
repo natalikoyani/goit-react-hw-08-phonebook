@@ -3,6 +3,7 @@ import { StyledList, StyledButton } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from '../../redux/contacts/operations';
 import { selectContacts, selectFilter } from 'redux/contacts/selectors';
+import { Btn } from 'components/Button';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -19,12 +20,12 @@ export const ContactList = () => {
         return (
           <li key={nanoid()}>
             {contact.name}: {contact.number}{' '}
-            <StyledButton
+            <Btn
               type="button"
               onClick={() => dispatch(deleteContact(contact.id))}
             >
               Delete
-            </StyledButton>
+            </Btn>
           </li>
         );
       })}

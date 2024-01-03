@@ -1,14 +1,16 @@
 import { NavLink } from 'react-router-dom';
+import { Btn } from 'components/Button';
+import { StyledAuthNav } from './AuthNaw.styled';
 
 export const AuthNav = () => {
   return (
-    <div>
+    <StyledAuthNav>
       <NavLink to="/register">
-        Register
+        <Btn>Register</Btn>
       </NavLink>
       <NavLink to="/login">
-        Log In
+        <Btn>Log In</Btn>
       </NavLink>
-    </div>
+    </StyledAuthNav>
   );
 };

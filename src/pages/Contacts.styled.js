@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-export const StyledList = styled.ul`
+export const ContactsPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
-  list-style: none;
+  gap: 15px;
 `;

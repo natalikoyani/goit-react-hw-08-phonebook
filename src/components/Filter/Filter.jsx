@@ -2,6 +2,7 @@ import { StyledTitle, StyledFilter } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { onFilterChange } from '../../redux/filterSlice';
 import { selectContacts } from 'redux/contacts/selectors';
+import { Input } from '@chakra-ui/react';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -16,13 +17,14 @@ export const Filter = () => {
   }
 
   return (
-    <>
+    <div>
       <StyledTitle>Find contacts by name</StyledTitle>
-      <StyledFilter
+      <Input
         type="string"
         name="filter"
+        width="20em"
         onChange={e => dispatch(onFilterChange(e.target.value))}
       />
-    </>
+    </div>
   );
 };
