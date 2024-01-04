@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { StyledList, StyledButton } from './ContactList.styled';
+import { StyledList } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from '../../redux/contacts/operations';
 import { selectContacts, selectFilter } from 'redux/contacts/selectors';

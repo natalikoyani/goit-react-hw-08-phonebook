@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const ContactsPageWrapper = styled.div`
+export const StyledUserMenu = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 15px;
 `;
