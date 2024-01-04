@@ -1,4 +1,4 @@
-import { StyledTitle, StyledFilter } from './Filter.styled';
+import { StyledTitle } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { onFilterChange } from '../../redux/filterSlice';
 import { selectContacts } from 'redux/contacts/selectors';
